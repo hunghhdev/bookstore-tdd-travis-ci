@@ -24,7 +24,7 @@ public class BookRepositoryTest {
     void shouldAbleToFetchAllBooksInDB() {
         Iterable<Book> books = bookRepository.findAll();
         long totalBookCount = StreamSupport.stream(books.spliterator(), false).count();
-        Assertions.assertEquals(2, totalBookCount);
+        Assertions.assertEquals(18, totalBookCount);
     }
 
     @Test

@@ -28,7 +28,7 @@ public class BookControllerTest {
         BookDto[] listOfBooks = testRestTemplate.getForObject("http://localhost:" + port + "/api/v1/books", BookDto[].class);
         assertThat(listOfBooks)
                 .isNotNull()
-                .hasSize(2);
+                .hasSize(18);
     }
 
     @Test

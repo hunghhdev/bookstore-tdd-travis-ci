@@ -19,7 +19,7 @@ public class BookService {
 
     private final ModelMapper modelMapper;
 
-    public BookService(BookRepository bookRepository, ModelMapper modelMapper){
+    public BookService(BookRepository bookRepository, ModelMapper modelMapper) {
         this.bookRepository = bookRepository;
         this.modelMapper = modelMapper;
     }
@@ -33,5 +33,10 @@ public class BookService {
 
     private Function<Book, BookDto> convertBookToBookDto() {
         return book -> modelMapper.map(book, BookDto.class);
+    }
+
+    public List<BookDto> getBooksByTitle(String bookTitle) {
+        List<Book> books = bookRepository.findBooksByTitleIgnoreCase(bookTitle);
+        return books.stream().map(convertBookToBookDto()).collect(Collectors.toList());
     }
 }

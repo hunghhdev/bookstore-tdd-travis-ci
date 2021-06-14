@@ -30,4 +30,13 @@ public class BookControllerTest {
                 .isNotNull()
                 .hasSize(2);
     }
+
+    @Test
+    @Sql(scripts = {"classpath:InsertInitialBookRecordForTest.sql"})
+    void shouldReturnOneBookWhenCalledWithTestTitle(){
+        BookDto[] listOfBooks = testRestTemplate.getForObject("http://localhost:" + port + "/api/v1/books/test Title", BookDto[].class);
+        assertThat(listOfBooks)
+                .isNotNull()
+                .hasSize(1);
+    }
 }
